@@ -1,7 +1,7 @@
 import requests
 import argparse
 import os
-from datetime import datetime, timedelta
+from datetime import datetime
 
 
 def get_project_id(gitlab_url, repo_path, gitlab_token):
