@@ -71,12 +71,15 @@ def get_average_commits(gitlab_url, repo_path, start_date, end_date, gitlab_toke
     for commit in commits:
         # Get date of commit by transforming 2021-08-08T22:01:37.000+03:0
         commit_day = datetime.strptime(commit["created_at"][:-1].split('T')[0], '%Y-%m-%d').date()
-        # Check that the commit day is in interval between start day and end day
-        if start_date_fmt <= commit_day <= end_date_fmt:
-            if commit_day in commits_per_day:
-                commits_per_day[commit_day] += 1
-            else:
-                commits_per_day[commit_day] = 1
+        if commit_day in commits_per_day:
+            commits_per_day[commit_day] += 1
+        else:
+            commits_per_day[commit_day] = 1
+
+    # Define max number of commits
+    max_value = max(commits_per_day.values())
+    max_key = max(commits_per_day, key=commits_per_day.get)
+    print(f"Max number of commits was: {max_value} in {max_key}")
 
     print(f"Total number of commits in period: {sum(commits_per_day.values())}")
 
