@@ -6,7 +6,7 @@ This project is a Python script that accesses the GitLab API and calculates the 
 
 To use the script, you need to have a private token for accessing the GitLab API and export its value by exporting variable GITLAB_TOKEN
 
-You also need to install some libraries (if it is not already installed) using the command:
+You also need to install `requests` library (if it is not already installed) using the command:
 
 ```commandline
 pip install -r requirements.txt
