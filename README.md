@@ -6,10 +6,10 @@ This project is a Python script that accesses the GitLab API and calculates the 
 
 To use the script, you need to have a private token for accessing the GitLab API and export its value by exporting variable GITLAB_TOKEN
 
-You also need to install the requests library (if it is not already installed) using the command:
+You also need to install some libraries (if it is not already installed) using the command:
 
 ```commandline
-pip install requests
+pip install -r requirements.txt
 ```
 
 To run the script, you need to run the `gitlab_commit_counter.py` file with the following command-line arguments:
