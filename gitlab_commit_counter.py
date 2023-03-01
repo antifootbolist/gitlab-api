@@ -76,17 +76,24 @@ def get_average_commits(gitlab_url, repo_path, start_date, end_date, gitlab_toke
         else:
             commits_per_day[commit_day] = 1
 
-    # Define max number of commits
-    max_value = max(commits_per_day.values())
-    max_key = max(commits_per_day, key=commits_per_day.get)
-    print(f"Max number of commits was: {max_value} in {max_key}")
+    # Define max number of commits and check that dictionary isn't empty
+    try:
+        max_value = max(commits_per_day.values())
+        max_key = max(commits_per_day, key=commits_per_day.get)
+        print(f"Max number of commits was: {max_value} in {max_key}")
+    except ValueError:
+        print(f"There aren't any commits in this period")
+        exit(1)
 
     print(f"Total number of commits in period: {sum(commits_per_day.values())}")
 
     # Count of days in period between start day and end day
-    days = end_date_fmt - start_date_fmt
-    print(f"Number of days in period: {days.days}")
-    average_commits_per_day = sum(commits_per_day.values()) / days.days
+    days = (end_date_fmt - start_date_fmt).days
+    # Fix date.toordinal() issue
+    days += 1
+
+    print(f"Number of days in period: {days}")
+    average_commits_per_day = sum(commits_per_day.values()) / days
 
     return average_commits_per_day
 
